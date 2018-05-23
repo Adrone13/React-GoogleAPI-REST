@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 import './App.css';
 
-import Map from './Map';
+import Main from './Main';
 
 
 class App extends Component {
@@ -13,11 +16,16 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <p className="App-intro">
+                <br />
+                {/* <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
+                </p> */}
 
-                <Map />
+                <Main />
+
+                <br />
+                <br />
+                <br />
             </div>
         );
     }

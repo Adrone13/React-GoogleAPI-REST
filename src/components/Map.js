@@ -10,9 +10,7 @@ const Map = withScriptjs(
                 defaultZoom={6}
                 defaultCenter={{ lat: 48.868554, lng: 32.053234 }}
             >
-                {locationData.length > 0 && locationData.map(item => 
-                    <Marker key={item.id} position={formatCoordinates(item)} />
-                )}
+                {props.children}
             </GoogleMap>
         );
     })

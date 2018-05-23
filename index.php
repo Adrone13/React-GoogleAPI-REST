@@ -32,6 +32,26 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         http_response_code(200);
     }
 
+    if ($_GET['url'] == "loads") {
+        // $coordinatesArray = array_values($db->query("SELECT * FROM loads RIGHT JOIN coordinates ON loads.id = coordinates.object_id"));
+        $loads = array_values($db->query("SELECT * FROM loads"));
+        $coordinatesArray = array_values($db->query("SELECT * FROM coordinates"));
+
+        foreach ($loads as $key => $value) {
+            $loads[$key]['coordinates'] = [];
+            
+            foreach ($coordinatesArray as $coordKey => $coordValue) {
+                if ($coordValue['object_id'] === $value['id']) {
+                    array_push($loads[$key]['coordinates'], $coordValue);
+                }
+            }
+        }
+
+        header('Content-type: application/json');
+        echo json_encode($loads);
+        http_response_code(200);
+    }
+
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     if ($_GET['url'] == "users") {

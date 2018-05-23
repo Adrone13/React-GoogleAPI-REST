@@ -1,3 +1,21 @@
+
+export function fetchData(endPoint) {
+    return fetch(`react-rest/${endPoint}`, {method: 'GET'})
+        .then(response => {
+            var contentType = response.headers.get("content-type");
+            
+            console.log(contentType);
+        
+            if(contentType && contentType.includes("application/json")) {
+                return response.json();
+            }
+            
+            throw new TypeError("Oops, we haven't got JSON!");
+        })
+        .then(json => json)
+        .catch(err => { console.error(err); })
+}
+
 export function getCoordinates() {
     return fetch('react-rest/coordinates', {method: 'GET'})
         .then(response => {
