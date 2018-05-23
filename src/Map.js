@@ -1,6 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
+import * as requests from './requests';
+import { formatCoordinates } from './helpers';
+
+
 const testData = [
     {
         "lat": 50.303279,
@@ -64,8 +68,10 @@ const Map = withScriptjs(
     withGoogleMap(props => {
         const { locationData } = props;
 
-        console.log(locationData);
-        console.log(locationData.length > 0);
+        // const current = locationData.length > 0 && formatCoordinates(locationData[0]);
+        // console.log(locationData);
+        // console.log(locationData.length > 0);
+        // console.log(current);
         // debugger;
 
         return (
@@ -74,7 +80,7 @@ const Map = withScriptjs(
                 defaultCenter={{ lat: 48.868554, lng: 32.053234 }}
             >
                 {locationData.length > 0 && locationData.map(item => 
-                    <Marker key={item.lat} position={item} />
+                    <Marker key={item.id} position={formatCoordinates(item)} />
                 )}
                 {/* {props.isMarkerShown && <Marker position={{ lat: 47.607, lng: -122.319 }} />} */}
             </GoogleMap>
@@ -86,28 +92,44 @@ class WrappedMap extends PureComponent {
     constructor(props) {
         super(props);
         
+        this.googleMapURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD_nHJXh-xRpNrLlkVXhPZHOH3gHyjQ5OA&v=3.exp&libraries=geometry,drawing,places';
+
         this.state = {
             locationData: [],
         };
     }
 
-    setLocationData = () => {
-        // Asynchronous call to api goes here
-        this.setState({
-            locationData: testData,
+    componentDidMount() {
+        requests.getCoordinates().then(result => {
+            console.log(result);
+            this.setState({
+                locationData: result,
+            });
         });
     }
+
+    // setLocationData = () => {
+    //     // Asynchronous call to api goes here
+    //     requests.getCoordinates().then(result => {
+    //         console.log(result);
+    //         this.setState({
+    //             locationData: result,
+    //         });
+    //     });
+    // }
 
     render() {
         return (
             <Fragment>
-                <button onClick={this.setLocationData}>Put Markers</button>
+                {/* <button onClick={this.setLocationData}>Put Markers</button> */}
                 <Map
                     // isMarkerShown
                     locationData={this.state.locationData}
 
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_nHJXh-xRpNrLlkVXhPZHOH3gHyjQ5OA&v=3.exp&libraries=geometry,drawing,places"
-                    
+                    //googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_nHJXh-xRpNrLlkVXhPZHOH3gHyjQ5OA&v=3.exp&libraries=geometry,drawing,places"
+                    googleMapURL={this.googleMapURL}
+
+
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `520px` }} />}
                     mapElement={<div style={{ height: `100%` }} />}

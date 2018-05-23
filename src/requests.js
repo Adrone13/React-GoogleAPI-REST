@@ -1,3 +1,20 @@
+export function getCoordinates() {
+    return fetch('react-rest/coordinates', {method: 'GET'})
+        .then(response => {
+            var contentType = response.headers.get("content-type");
+            
+            console.log(contentType);
+    
+            if(contentType && contentType.includes("application/json")) {
+                return response.json();
+            }
+            
+            throw new TypeError("Oops, we haven't got JSON!");
+        })
+        .then(json => json)
+        .catch(err => { console.log(err); });
+}
+
 const getGeoCode = (options) => new Promise(resolve => {
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode(options.params, (results, status) => {
@@ -35,7 +52,6 @@ const getGeoCode = (options) => new Promise(resolve => {
             });
         } else if (status === 'OVER_QUERY_LIMIT') {
             console.error("GOOGLE API ERROR -> OVER QUERY LIMIT");
-            refreshApiToken();
         } else {
             console.warn(`Geocode was not successful for the following reason: ${status}`);
             resolve([]);
@@ -77,7 +93,6 @@ export function requestDirections(points) {
                 }, 500);
             } else if (status === 'OVER_QUERY_LIMIT') {
                 console.error("GOOGLE API ERROR -> OVER QUERY LIMIT");
-                refreshApiToken();
             } else {
                 resolve({data: response, status});
             }
