@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-
 import { getLatestCoordinate } from '../helpers';
 
 const actions = {
@@ -18,11 +16,11 @@ const TableRow = props => {
 
     return (
         <tr>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{`Latitude: ${lat}, Longitude: ${lng}`}</td>
-            <td>{time}</td>
-            <td>
+            <td style={{verticalAlign: 'middle', padding: 10}}>{id}</td>
+            <td style={{verticalAlign: 'middle', padding: 10}}>{name}</td>
+            <td style={{verticalAlign: 'middle', padding: 10}}>{`Latitude: ${lat}, Longitude: ${lng}`}</td>
+            <td style={{verticalAlign: 'middle', padding: 10}}>{time}</td>
+            <td style={{verticalAlign: 'middle', padding: 10, textAlign: 'center'}}>
                 <button 
                     className="bs4-btn bs4-btn-primary" 
                     style={{margin: 5}}
@@ -33,6 +31,7 @@ const TableRow = props => {
                 <button 
                     className="bs4-btn bs4-btn-success" 
                     style={{margin: 5}}
+                    onClick={() => props.buildRoute(coordinates)}
                 >
                     Build route
                 </button>

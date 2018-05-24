@@ -1,14 +1,11 @@
 body {
     background-color: #ebeff2;
+    font-size: 16px;
 }
 
 thead tr {
     background-color: #ebeff2;
     height: 40px;
-}
-
-.App {
-    text-align: center;
 }
 
 .App-logo {
@@ -38,7 +35,7 @@ thead tr {
 }
 
 .bs4-btn {
-    font-size: 14px;
+    font-size: 16px;
     height: 34px;
     display: inline-block;
     font-weight: 400;
@@ -79,6 +76,13 @@ thead tr {
     color: #fff;
     background-color: #218838;
     border-color: #1e7e34;
+}
+
+.styled-block {
+    background-color: #fff;
+    border: 2px solid #ebeff2;
+    border-radius: 5px;
+    padding: 20px;   
 }
 
 @keyframes App-logo-spin {
