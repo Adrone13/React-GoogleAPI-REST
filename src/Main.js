@@ -129,7 +129,7 @@ class MainContainer extends PureComponent {
                                     <div className="col-sm-6">
                                         <p>
                                             <strong>Start Address: </strong>{routeDetails && routeDetails.start_address}
-                                            <span style={{fontSize: '18px'}}>  ⮞</span>
+                                            <span style={{fontSize: '18px', color: '#28a745'}}>  ⮞</span>
                                         </p>
                                     </div>
                                     <div className="col-sm-6">
@@ -139,7 +139,7 @@ class MainContainer extends PureComponent {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <p><strong>End Address: </strong>{routeDetails && routeDetails.end_address}
-                                        <span style={{fontSize: '18px'}}>  ⚑</span>
+                                        <span style={{fontSize: '18px', color: '#0069d9'}}>  ⚑</span>
                                     </p>
                                     </div>
                                     <div className="col-sm-6">
