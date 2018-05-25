@@ -127,7 +127,10 @@ class MainContainer extends PureComponent {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-6">
-                                        <p><strong>Start Address: </strong>{routeDetails && routeDetails.start_address}  ⮞</p>
+                                        <p>
+                                            <strong>Start Address: </strong>{routeDetails && routeDetails.start_address}
+                                            <span style={{fontSize: '18px'}}>  ⮞</span>
+                                        </p>
                                     </div>
                                     <div className="col-sm-6">
                                         <p><strong>Total Distance: </strong>{routeDetails && metersToKilometers(routeDetails.distance)}</p>
@@ -135,15 +138,18 @@ class MainContainer extends PureComponent {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-6">
-                                        <p><strong>End Address: </strong>{routeDetails && routeDetails.end_address}  ⚑</p>
+                                        <p><strong>End Address: </strong>{routeDetails && routeDetails.end_address}
+                                        <span style={{fontSize: '18px'}}>  ⚑</span>
+                                    </p>
                                     </div>
                                     <div className="col-sm-6">
                                         <p><strong>Total Travel Time: </strong>{routeDetails && secondsToHours(routeDetails.duration)}</p>
                                     </div>
                                 </div>
-                                <br />
                             </div>
                         )}
+
+                        <br />
 
                         <Table>
                             {loadsData && loadsData.map(item => (
