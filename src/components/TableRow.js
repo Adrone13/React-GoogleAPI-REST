@@ -11,7 +11,7 @@ const TableRow = props => {
         return null;
     }
 
-    const { id, name, coordinates = [], description } = props.data;
+    const { id, name, coordinates = [] } = props.data;
     const { lat, lng, time } = getLatestCoordinate(coordinates);
 
     return (
